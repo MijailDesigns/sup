@@ -1,0 +1,20 @@
+.subtitulo{
+    background-color: aqua;
+    height: 500px;
+}
+
+.h2{
+    background-color: green;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subContainer{
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
