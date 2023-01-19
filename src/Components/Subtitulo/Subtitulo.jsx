@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import style from './Subtitulo.module.css'
+import { Link } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getCharacters } from '../../actions';
 
 const Subtitulo = () => {
 
+  const dispatch = useDispatch();
+  const personajes = useSelector(state => state.characters)
+
   const [input, setInput] = useState("");
-  const [errors, setErrors] = useState({});
-  const [info, setInfo] = useState({});
-  console.log(info)
-
-
-  function validate(input) {
-    let errors = {};
-    if (input !== 'hola') {
-      errors.name='no es correcto'
-    }
-    return errors
-  }
-
-  async function fetchdate(input) {
-    return await fetch(`https://rickandmortyapi.com/api/character/?name=${input}`)
-        .then(response => response.json()).then(data => setInfo(data));
-  }
-
-  console.log(input)
 
   useEffect(() => {
     return setInput("")
@@ -32,7 +20,7 @@ const Subtitulo = () => {
 
   useEffect(() => {
     console.log(input)
-    fetchdate(input)
+    dispatch(getCharacters(input))
   }, [input])
 
  function handleChange(e) {
@@ -50,17 +38,15 @@ const Subtitulo = () => {
 
 
       <div className={style.container}>
-        {info.results?.map(e => 
+        {personajes?.map(e => 
         <div className={style.subContainer}>
           <p>{e.name}</p>
           <img src={e.image} alt={e.name} style={{"width": "100px"}} /> 
-        
+          <Link to={`detail/${e.id}`}>ver detalle</Link>
         </div>
         )}
       </div>
       
-
-      {errors.name && <p>{errors.name}</p>}
     </div>
   )
 }
