@@ -2,18 +2,32 @@ import React, { useEffect, useState } from 'react'
 import style from './Subtitulo.module.css'
 import { Link } from 'react-router-dom';
 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../actions';
+import Filter from '../Filter/Filter';
 
 const Subtitulo = () => {
 
   const dispatch = useDispatch();
   const personajes = useSelector(state => state.characters)
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    status: "",
+    species: "",
+    type: "",
+    gender: ""
+  });
 
   useEffect(() => {
-    return setInput("")
+    return setInput({
+      name: "",
+      status: "",
+      species: "",
+      type: "",
+      gender: ""
+    })
 
     
   }, [])
@@ -24,15 +38,20 @@ const Subtitulo = () => {
   }, [input])
 
  function handleChange(e) {
-  setInput(e.target.value)
+  setInput({
+    ...input,
+    [e.target.name]: e.target.value
+  })
  }
 
   return (
     <div className={style.subtitulo}>
       <h2 className={style.h2}>Subtitulo hello</h2>
       <form>
-        <input onChange={handleChange} type="text" name='name' />
+        <input onChange={handleChange} type="text" name='name' placeholder='Search by name' />
       </form>
+
+      <Filter handleChange={handleChange} />
 
       <h2>Resultados de busqueda:</h2>
 
