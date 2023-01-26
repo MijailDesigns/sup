@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Filter = ({handleChange}) => {
+const Filter = ({handleChange, input}) => {
+
+
 
     let spec = [
         "Human",
@@ -30,7 +32,7 @@ const Filter = ({handleChange}) => {
                 <select name='status' onChange={handleChange} >
                     <option value="" >All</option>
                     {sta.map((g, index) => 
-                        <option key={index}  value={g} >{g}</option>  
+                        <option key={index}  value={g} selected={input.status === g} >{g}</option>  
                         )}
                 </select>
             </div>
@@ -40,7 +42,7 @@ const Filter = ({handleChange}) => {
                 <select name='species' onChange={handleChange} >
                     <option value="" >All</option>
                     {spec.map((g, index) => 
-                        <option key={index}  value={g} >{g}</option>  
+                        <option key={index}  value={g} selected={input.species === g} >{g}</option>  
                         )}
                 </select>
             </div>
@@ -50,7 +52,7 @@ const Filter = ({handleChange}) => {
                 <select name='gender' onChange={handleChange} >
                     <option value="" >All</option>
                     {gen.map((g, index) => 
-                        <option key={index}  value={g} >{g}</option>  
+                        <option key={index}  value={g} selected={input.gender === g} >{g}</option>  
                         )}
                 </select>
             </div>
