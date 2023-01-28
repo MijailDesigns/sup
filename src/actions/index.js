@@ -33,6 +33,14 @@ export function getCharacters(input) {
     };
   }
 
+export function addCharacterFavorite(payload){
+    return {type: 'ADD_FAVORITE' , payload}
+}
+
+export function deleteFavorite(payload){
+    return {type: 'DELETE_FAVORITE' , payload}
+}
+
 
 
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './Subtitulo.module.css'
 import { Link } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom';
-
+import { addCharacterFavorite } from '../../actions';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../actions';
@@ -79,10 +79,11 @@ const Subtitulo = () => {
 
       <div className={style.container}>
         {personajes?.map(e => 
-        <div className={style.subContainer}>
+        <div key={e.id} className={style.subContainer}>
           <p>{e.name}</p>
           <img src={e.image} alt={e.name} style={{"width": "100px"}} /> 
           <Link to={`detail/${e.id}`}>ver detalle</Link>
+          <button onClick={() => dispatch(addCharacterFavorite(e))}>Agregar favorito</button>
         </div>
         )}
       </div>

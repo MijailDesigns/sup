@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar';
 import store from './store';
 import { Provider } from 'react-redux';
 import Detail from './Components/Detail';
+import Favoritos from './Components/Favoritos/Favoritos';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path="/subtitulo">
           <Subtitulo />
+        </Route>
+        <Route path="/favoritos">
+          <Favoritos />
         </Route>
         <Route path="/detail/:id">
           <Detail />

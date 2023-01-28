@@ -6,6 +6,7 @@ const NavBar = () => {
     <div style={{backgroundColor: 'lightBlue'}}>
         <button><Link to='/subtitulo'>Ir subtitulo</Link></button>
         <button><Link to='/'>Ir home</Link></button>
+        <button><Link to='/favoritos'>Favoritos</Link></button>
     </div>
   )
 }
