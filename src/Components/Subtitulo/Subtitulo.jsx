@@ -14,6 +14,8 @@ const Subtitulo = () => {
   const personajes = useSelector(state => state.characters)
   let history = useHistory();
   let {search} = useLocation();
+  console.log(useLocation())
+  console.log(search);
 
   let query = new URLSearchParams(search);
 
