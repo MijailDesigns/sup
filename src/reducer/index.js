@@ -9,7 +9,7 @@ function rootReducer(state = initialState, action) {
         case 'GET_CHARACTERS':
         return{
             ...state, 
-            characters: action.payload.results
+            characters: action.payload,
         }
         case 'GET_DETAIL':
             return{

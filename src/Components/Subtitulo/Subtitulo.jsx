@@ -7,25 +7,40 @@ import { addCharacterFavorite } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCharacters } from '../../actions';
 import Filter from '../Filter/Filter';
+import Pagination from '../Pagination/Pagination';
 
 const Subtitulo = () => {
 
   const dispatch = useDispatch();
-  const personajes = useSelector(state => state.characters)
+  const personajes = useSelector(state => state.characters.results)
+  const totalPages = useSelector(state => state.characters.info?.pages)
+
+  console.log(totalPages)
+
+
+  
   let history = useHistory();
   let {search} = useLocation();
-  console.log(useLocation())
-  console.log(search);
+  // console.log(useLocation())
+  // console.log(search);
 
   let query = new URLSearchParams(search);
 
   const [input, setInput] = useState({
+    page: query.get("page") || 1,
     name: query.get("name") || "",
     status: query.get("status") || "",
     species: query.get("species") || "",
     type: query.get("type") || "",
     gender: query.get("gender") || ""
   });
+
+  //const [page, setPage] = useState(query.get("page") || 1);
+
+  // const personajes = personajes2.slice((4*page - 4),(4*page))
+
+//1  4*1-4 = 0  4*1 = 4 -1 
+  //2  4*2-4 =4  4*2 = 8 -1
 
   // useEffect(() => {
   //   return setInput({
@@ -40,7 +55,7 @@ const Subtitulo = () => {
   // }, [])
 
   useEffect(() => {
-    console.log(input)
+    //console.log(input)
     dispatch(getCharacters(input))
   }, [input])
 
@@ -77,6 +92,8 @@ const Subtitulo = () => {
       <Filter input={input} handleChange={handleChange} />
 
       <h2>Resultados de busqueda:</h2>
+
+      <Pagination input={input} setInput={setInput} totalPages={totalPages} />
 
 
       <div className={style.container}>
